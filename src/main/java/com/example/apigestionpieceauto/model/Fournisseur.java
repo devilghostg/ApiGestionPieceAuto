@@ -17,7 +17,7 @@ public class Fournisseur {
     private String adresse;
     private String telephone;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.ALL)
     private Set<PieceAuto> pieceAutos;
 
     public Fournisseur() {

@@ -5,18 +5,20 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "piece_auto")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class PieceAuto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-    private String references;
+    private String reference;
     private String nom;
     private String marque;
     private Integer prix;
 
     @ManyToOne
+    @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
 
     @ManyToMany(mappedBy = "pieceAutos")
@@ -28,9 +30,9 @@ public class PieceAuto {
         return id;
     }
 
-    public PieceAuto(Long id, String references, String nom, String marque, Integer prix) {
+    public PieceAuto(Long id, String reference, String nom, String marque, Integer prix) {
         this.id = id;
-        this.references = references;
+        this.reference = reference;
         this.nom = nom;
         this.marque = marque;
         this.prix = prix;
@@ -43,12 +45,12 @@ public class PieceAuto {
         this.id = id;
     }
 
-    public String getReferences() {
-        return references;
+    public String getReference() {
+        return reference;
     }
 
-    public void setReferences(String references) {
-        this.references = references;
+    public void setReference(String references) {
+        this.reference = references;
     }
 
     public String getNom() {
