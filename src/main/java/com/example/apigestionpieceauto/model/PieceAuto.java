@@ -1,5 +1,6 @@
 package com.example.apigestionpieceauto.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -18,6 +19,7 @@ public class PieceAuto {
 
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
+    @JsonBackReference
     private Fournisseur fournisseur;
 
     @ManyToMany(mappedBy = "pieceAutos")

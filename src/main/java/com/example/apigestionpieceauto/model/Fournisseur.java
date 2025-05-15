@@ -1,5 +1,6 @@
 package com.example.apigestionpieceauto.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -18,6 +19,7 @@ public class Fournisseur {
     private String telephone;
 
     @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<PieceAuto> pieceAutos;
 
     public Fournisseur() {
