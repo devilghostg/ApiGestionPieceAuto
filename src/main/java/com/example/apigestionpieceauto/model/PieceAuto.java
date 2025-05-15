@@ -23,8 +23,6 @@ public class PieceAuto {
     @ManyToMany(mappedBy = "pieceAutos")
     private Set<Vehicule> vehicules;
 
-
-
     public Long getId() {
         return id;
     }
@@ -74,5 +72,21 @@ public class PieceAuto {
 
     public void setPrix(Integer prix) {
         this.prix = prix;
+    }
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
+
+    public Set<Vehicule> getVehicules() {
+        return vehicules;
+    }
+
+    public void setVehicules(Set<Vehicule> vehicules) {
+        this.vehicules = vehicules;
     }
 }
