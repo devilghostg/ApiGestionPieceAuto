@@ -12,15 +12,13 @@ public class PieceMoteur extends PieceAuto {
     @Enumerated(EnumType.STRING)
     private TypeMoteur typeMoteur;
 
+    public PieceMoteur() {}
+
     public PieceMoteur(Long id, String references, String nom, String marque, Integer prix, Long id1, Integer puissance, TypeMoteur typeMoteur) {
         super(id, references, nom, marque, prix);
         this.id = id1;
         this.puissance = puissance;
         this.typeMoteur = typeMoteur;
-    }
-
-    public PieceMoteur(Long id, String references, String nom, String marque, Integer prix) {
-        super(id, references, nom, marque, prix);
     }
 
     @Override

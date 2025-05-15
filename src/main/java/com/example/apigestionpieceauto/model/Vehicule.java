@@ -30,12 +30,13 @@ public class Vehicule {
         this.annee = annee;
     }
 
-    public Vehicule(Long id, String marque, String modele, Date annee, String immatriculation) {
+    public Vehicule(Long id, String marque, String modele, Date annee, String immatriculation, Set<PieceAuto> pieceAutos) {
         this.id = id;
         this.marque = marque;
         this.modele = modele;
         this.annee = annee;
         this.immatriculation = immatriculation;
+        PieceAutos = pieceAutos;
     }
 
     public Long getId() {
@@ -76,5 +77,13 @@ public class Vehicule {
 
     public void setImmatriculation(String immatriculation) {
         this.immatriculation = immatriculation;
+    }
+
+    public Set<PieceAuto> getPieceAutos() {
+        return PieceAutos;
+    }
+
+    public void setPieceAutos(Set<PieceAuto> pieceAutos) {
+        PieceAutos = pieceAutos;
     }
 }

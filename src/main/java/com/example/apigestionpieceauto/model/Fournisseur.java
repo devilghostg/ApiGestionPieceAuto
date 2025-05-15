@@ -20,6 +20,17 @@ public class Fournisseur {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<PieceAuto> pieceAutos;
 
+    public Fournisseur() {
+    }
+
+    public Fournisseur(Long id, String nom, String adresse, String telephone, Set<PieceAuto> pieceAutos) {
+        this.id = id;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.pieceAutos = pieceAutos;
+    }
+
     public Long getId() {
         return id;
     }
@@ -28,4 +39,35 @@ public class Fournisseur {
         this.id = id;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Set<PieceAuto> getPieceAutos() {
+        return pieceAutos;
+    }
+
+    public void setPieceAutos(Set<PieceAuto> pieceAutos) {
+        this.pieceAutos = pieceAutos;
+    }
 }
