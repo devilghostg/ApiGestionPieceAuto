@@ -19,8 +19,8 @@ public class PieceMoteur extends PieceAuto {
         this.typeMoteur = typeMoteur;
     }
 
-    public PieceMoteur(Long id, String references, String nom, String marque, Integer prix) {
-        super(id, references, nom, marque, prix);
+    public PieceMoteur() {
+
     }
 
     @Override
