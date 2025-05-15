@@ -20,7 +20,7 @@ public class Vehicule {
     private String immatriculation;
 
     @ManyToMany
-    private Set<PieceAuto> PieceAutos;
+    private Set<PieceAuto> pieceAutos;
 
     public Vehicule() {}
 
@@ -36,7 +36,7 @@ public class Vehicule {
         this.modele = modele;
         this.annee = annee;
         this.immatriculation = immatriculation;
-        PieceAutos = pieceAutos;
+        pieceAutos = pieceAutos;
     }
 
     public Long getId() {
@@ -80,10 +80,10 @@ public class Vehicule {
     }
 
     public Set<PieceAuto> getPieceAutos() {
-        return PieceAutos;
+        return pieceAutos;
     }
 
     public void setPieceAutos(Set<PieceAuto> pieceAutos) {
-        PieceAutos = pieceAutos;
+        pieceAutos = pieceAutos;
     }
 }

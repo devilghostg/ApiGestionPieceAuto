@@ -2,6 +2,8 @@ package com.example.apigestionpieceauto.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "piece_auto")
 public class PieceAuto {
@@ -13,6 +15,13 @@ public class PieceAuto {
     private String nom;
     private String marque;
     private Integer prix;
+
+    @ManyToOne
+    private Fournisseur fournisseur;
+
+    @ManyToMany(mappedBy = "pieceAutos")
+    private Set<Vehicule> vehicules;
+
 
 
     public Long getId() {
