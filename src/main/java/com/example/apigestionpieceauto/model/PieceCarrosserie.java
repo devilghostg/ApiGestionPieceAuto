@@ -6,38 +6,23 @@ import jakarta.persistence.*;
 @Entity
 public class PieceCarrosserie extends PieceAuto {
 
-    private Long id;
     private String couleur;
     @Enumerated(EnumType.STRING)
     private TypeCarrosserie typeCarrosserie;
 
-    public PieceCarrosserie(Long id, String references, String nom, String marque, Integer prix, Long id1, String couleur, TypeCarrosserie typeCarrosserie) {
+    public PieceCarrosserie(Long id, String references, String nom, String marque, Integer prix, String couleur, TypeCarrosserie typeCarrosserie) {
         super(id, references, nom, marque, prix);
-        this.id = id1;
         this.couleur = couleur;
         this.typeCarrosserie = typeCarrosserie;
     }
 
-    public PieceCarrosserie(Long id, String couleur, TypeCarrosserie typeCarrosserie) {
-        this.id = id;
+    public PieceCarrosserie( String couleur, TypeCarrosserie typeCarrosserie) {
         this.couleur = couleur;
         this.typeCarrosserie = typeCarrosserie;
     }
 
     public PieceCarrosserie() {
 
-    }
-
-
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCouleur() {
