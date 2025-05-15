@@ -1,8 +1,6 @@
 package com.example.apigestionpieceauto.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 
 
 @Entity
