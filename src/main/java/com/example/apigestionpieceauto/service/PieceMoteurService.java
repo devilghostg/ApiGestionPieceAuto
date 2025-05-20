@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class PieceMoteurService {
+public class PieceMoteurService {
 
     @Autowired
     private PieceMoteurRepository pieceMoteurRepository;
@@ -31,8 +31,8 @@ class PieceMoteurService {
         return pieceMoteurRepository.save(pieceMoteur);
     }
 
-    public void deletePieceMoteur(PieceMoteur pieceMoteur) {
-        pieceMoteurRepository.delete(pieceMoteur);
+    public void deletePieceMoteur(Long id) {
+        pieceMoteurRepository.deleteById(id);
     }
 
 }

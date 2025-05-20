@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class PieceCarrosserieService {
+public class PieceCarrosserieService {
 
     @Autowired
     private PieceCarrosserieRepository pieceCarrosserieRepository;
@@ -38,6 +38,14 @@ class PieceCarrosserieService {
 
     public void deletePieceCarrosserie(Long id) {
         pieceCarrosserieRepository.deleteById(id);
+    }
+
+    public void updatePieceCarrosserie(PieceCarrosserie pieceCarrosserie) {
+        pieceCarrosserieRepository.save(pieceCarrosserie);
+    }
+
+    public PieceCarrosserie getAllByTypeCarrosserie(TypeCarrosserie typeCarrosserie) {
+        return (PieceCarrosserie) pieceCarrosserieRepository.findPieceCarrosserieByTypeCarrosserie(typeCarrosserie);
     }
 
 }

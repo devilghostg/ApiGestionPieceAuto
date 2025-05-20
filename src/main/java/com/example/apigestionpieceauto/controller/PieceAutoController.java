@@ -40,12 +40,18 @@ class PieceAutoController {
     @PostMapping("/add")
     public String createPieceAuto(@ModelAttribute("pieceAutos") PieceAuto pieceAuto) {
         pieceAutoService.createPieceAuto(pieceAuto);
-        return "redirect:/pieceauto";
+        return "redirect:/piece";
     }
 
     @PutMapping("/edit/{id}/send")
     public String updatePieceAuto(@PathVariable Long id, @ModelAttribute PieceAuto pieceAuto) {
-        return "redirect:/pieceauto/" + id;
+        return "redirect:/piece/" + id;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deletePieceAuto(@PathVariable Long id) {
+        pieceAutoService.deletePieceAutoById(id);
+        return "redirect:/piece";
     }
 
 }
