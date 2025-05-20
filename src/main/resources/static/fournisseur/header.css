@@ -3,6 +3,8 @@
     --primary-color: rgb(144, 71, 2);
     --text-color: #333;
     --hover-color: #c26203;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* Reset et styles de base */
@@ -26,18 +28,27 @@ header {
     gap: 3rem;
     padding: 3rem;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--card-bg);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
 }
 
-header > div > h1 {
+.header-title {
+    text-align: center;
+}
+
+header h1 {
     color: var(--text-color);
     font-weight: 700;
     font-size: 3.5rem;
-    text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.2rem;
 }
 
 /* Navigation styles */
@@ -76,16 +87,141 @@ nav ul li a:hover {
     background-color: var(--hover-color);
     color: white;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
+}
+
+/* Main content styles */
+.fournisseurs-list {
+    padding: 2rem;
+}
+
+.fournisseurs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.fournisseur-card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.fournisseur-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-header i {
+    font-size: 1.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body p {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+}
+
+.card-body i {
+    color: var(--primary-color);
+    width: 20px;
+}
+
+.card-footer {
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn-details, .btn-edit {
+    flex: 1;
+    text-decoration: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-details {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-edit {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-details:hover, .btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Add card styles */
+.add-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 3px dashed rgba(144, 71, 2, 0.3);
+}
+
+.add-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.add-button i {
+    font-size: 2.5rem;
+}
+
+.add-button:hover {
+    transform: scale(1.1);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
     header {
         padding: 2rem;
     }
 
-    header > div > h1 {
+    header h1 {
         font-size: 2.5rem;
     }
 
@@ -95,5 +231,9 @@ nav ul li a:hover {
 
     nav ul li {
         width: 100%;
+    }
+
+    .fournisseurs-grid {
+        grid-template-columns: 1fr;
     }
 }

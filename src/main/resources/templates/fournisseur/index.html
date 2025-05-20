@@ -34,15 +34,83 @@
                         Fournisseurs bois
                     </a>
                 </li>
+                <li>
+                    <button type="button" class="btn-modal" data-bs-toggle="modal" data-bs-target="#modal-add-fournisseur">
+                        <i class="fas fa-plus"></i>
+                        Ajouter un fournisseur
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-add-fournisseur" tabindex="-1" aria-labelledby="modal-add-fournisseur-label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add-fournisseur-label">Ajouter un fournisseur</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/fournisseur/create" method="post">
+                                        <div class="mb-3">
+                                            <label for="nom" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="nom" name="nom" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="adresse" class="form-label">Adresse</label>
+                                            <input type="text" class="form-control" id="adresse" name="adresse" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="telephone" class="form-label">Téléphone</label>
+                                            <input type="text" class="form-control" id="telephone" name="telephone" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <section class="fournisseurs-list">
+            <div class="fournisseurs-grid">
+                <!-- Bouton pour ajouter un nouveau fournisseur -->
+                <div class="fournisseur-card add-card">
+                    <a href="/fournisseur/create" class="add-button">
+                        <i class="fas fa-plus"></i>
+                        <span>Ajouter un fournisseur</span>
+                    </a>
+                </div>
+                
+                <!-- Liste des fournisseurs -->
+                <div th:each="fournisseur : ${fournisseurs}" class="fournisseur-card">
+                    <div class="card-header">
+                        <i class="fas fa-building"></i>
+                        <h3 th:text="${fournisseur.nom}">Nom du fournisseur</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="fas fa-map-marker-alt"></i> <span th:text="${fournisseur.adresse}">Adresse</span></p>
+                        <p><i class="fas fa-phone"></i> <span th:text="${fournisseur.telephone}">Téléphone</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a th:href="@{/fournisseur/{id}(id=${fournisseur.id})}" class="btn-details">
+                            <i class="fas fa-eye"></i> Voir détails
+                        </a>
+                        <a th:href="@{/fournisseur/{id}/edit(id=${fournisseur.id})}" class="btn-edit">
+                            <i class="fas fa-edit"></i> Modifier
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <!-- Footer à venir -->
     </footer>
+
+
 </body>
 </html>

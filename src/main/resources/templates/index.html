@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/home/header.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Gestion Pièces Auto - Accueil</title>
+</head>
+<body>
+    <header class="hero">
+        <div class="header-content">
+            <h1>Gestion Pièces Auto</h1>
+            <p class="subtitle">Système intelligent de gestion des pièces automobiles</p>
+            <div class="hero-buttons">
+                <a href="/fournisseur" class="btn btn-primary">
+                    <i class="fas fa-users"></i>
+                    Gérer les fournisseurs
+                </a>
+                <a href="/pieces" class="btn btn-secondary">
+                    <i class="fas fa-cogs"></i>
+                    Voir les pièces
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck-fast"></i>
+                </div>
+                <h2>Gestion des Fournisseurs</h2>
+                <p>Gérez efficacement vos fournisseurs de pièces automobiles avec notre interface intuitive.</p>
+                <a href="/fournisseur" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h2>Stock de Pièces</h2>
+                <p>Suivez votre inventaire en temps réel et gérez vos pièces automobiles facilement.</p>
+                <a href="/pieces" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2>Statistiques</h2>
+                <p>Analysez vos données et prenez des décisions éclairées grâce à nos tableaux de bord.</p>
+                <a href="/stats" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="quick-actions">
+            <h2>Actions Rapides</h2>
+            <div class="actions-grid">
+                <a href="/fournisseur/create" class="action-card">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Nouveau Fournisseur</span>
+                </a>
+                <a href="/pieces/create" class="action-card">
+                    <i class="fas fa-plus"></i>
+                    <span>Nouvelle Pièce</span>
+                </a>
+                <a href="/fournisseur/all" class="action-card">
+                    <i class="fas fa-list"></i>
+                    <span>Liste Fournisseurs</span>
+                </a>
+                <a href="/pieces/all" class="action-card">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventaire</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="/fournisseur">Fournisseurs</a></li>
+                    <li><a href="/pieces">Pièces</a></li>
+                    <li><a href="/stats">Statistiques</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@pieceauto.com</li>
+                    <li><i class="fas fa-phone"></i> +123 456 789</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Gestion Pièces Auto. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
