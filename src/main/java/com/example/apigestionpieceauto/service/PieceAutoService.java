@@ -1,8 +1,7 @@
 package com.example.apigestionpieceauto.service;
 
-import com.example.apigestionpieceauto.model.Fournisseur;
-import com.example.apigestionpieceauto.model.PieceAuto;
-import com.example.apigestionpieceauto.repository.FournisseurRepository;
+
+import com.example.apigestionpieceauto.Entity.PieceAuto;
 import com.example.apigestionpieceauto.repository.PieceAutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

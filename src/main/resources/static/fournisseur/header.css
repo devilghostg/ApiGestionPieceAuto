@@ -1,0 +1,99 @@
+/* Variables globales */
+:root {
+    --primary-color: rgb(144, 71, 2);
+    --text-color: #333;
+    --hover-color: #c26203;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--primary-color);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+header > div > h1 {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Navigation styles */
+nav {
+    width: 100%;
+    max-width: 800px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+nav ul li {
+    flex: 1;
+    min-width: 200px;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    background-color: var(--hover-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header {
+        padding: 2rem;
+    }
+
+    header > div > h1 {
+        font-size: 2.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+}

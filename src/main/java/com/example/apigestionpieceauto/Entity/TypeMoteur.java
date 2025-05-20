@@ -1,4 +1,4 @@
-package com.example.apigestionpieceauto.model;
+package com.example.apigestionpieceauto.Entity;
 
 public enum TypeMoteur {
     MANUEL,

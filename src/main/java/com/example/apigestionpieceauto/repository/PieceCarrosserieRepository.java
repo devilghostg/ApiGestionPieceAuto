@@ -1,7 +1,7 @@
 package com.example.apigestionpieceauto.repository;
 
-import com.example.apigestionpieceauto.model.PieceCarrosserie;
-import com.example.apigestionpieceauto.model.TypeCarrosserie;
+import com.example.apigestionpieceauto.Entity.PieceCarrosserie;
+import com.example.apigestionpieceauto.Entity.TypeCarrosserie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

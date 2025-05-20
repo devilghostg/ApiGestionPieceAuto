@@ -1,4 +1,4 @@
-package com.example.apigestionpieceauto.model;
+package com.example.apigestionpieceauto.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
