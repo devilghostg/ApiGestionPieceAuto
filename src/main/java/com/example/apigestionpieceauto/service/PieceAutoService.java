@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class PieceAutoService {
+public class PieceAutoService {
 
     @Autowired
     private PieceAutoRepository pieceAutoRepository;
