@@ -1,9 +1,9 @@
 package com.example.apigestionpieceauto.repository;
 
 import com.example.apigestionpieceauto.model.PieceMoteur;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource(path = "piecemoteur")
-public interface PieceMoteurRepository extends JpaRepository<PieceMoteur, Long> {
+@Repository
+public interface PieceMoteurRepository extends CrudRepository<PieceMoteur, Long> {
 }

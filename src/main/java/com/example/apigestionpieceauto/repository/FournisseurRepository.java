@@ -2,8 +2,8 @@ package com.example.apigestionpieceauto.repository;
 
 import com.example.apigestionpieceauto.model.Fournisseur;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource(path = "fournisseur")
+@Repository
 public interface FournisseurRepository extends CrudRepository<Fournisseur, Long> {
 }
