@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -23,18 +24,20 @@ class PieceCarrosserieController {
 
     @GetMapping
     public String getPieceCarrosseries(Model model) {
-        model.addAttribute("pieceCarrosserie", pieceCarrosserieService.getAllPieceCarrosseries());
+        model.addAttribute("pieceCarrosseries", pieceCarrosserieService.getAllPieceCarrosseries());
         return "pieces/carrosserie/index";
     }
 
     @GetMapping("/{id}")
     public String getPieceCarrosserieById(@PathVariable Long id, Model model) {
-        model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id));
+        model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id).orElseThrow(()-> new RuntimeException("Carrosserie not found")));
         return "pieces/carrosserie/show";
     }
 
     @GetMapping("/new")
-    public String newPieceCarrosserie() {
+    public String newPieceCarrosserie(Model model) {
+        System.out.println(Arrays.toString(TypeCarrosserie.values()));
+        model.addAttribute("typeCarrosserie", TypeCarrosserie.values());
         return "pieces/carrosserie/new";
     }
 
@@ -55,7 +58,7 @@ class PieceCarrosserieController {
         return new ResponseEntity<>(pieceCarrosserieRepository.findPieceCarrosserieByTypeCarrosserie(TypeCarrosserie.ALUMINIUM), HttpStatus.OK);
     }*/
 
-    @PostMapping("/new/send")
+    @PostMapping("/new")
     public String createPieceCarrosserie(PieceCarrosserie pieceCarrosserie) {
         pieceCarrosserieService.createPieceCarrosserie(pieceCarrosserie);
         return "redirect:/piece/carrosserie";
