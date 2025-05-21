@@ -1,6 +1,5 @@
 package com.example.apigestionpieceauto.service;
 
-
 import com.example.apigestionpieceauto.Entity.PieceAuto;
 import com.example.apigestionpieceauto.repository.PieceAutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +35,16 @@ public class PieceAutoService {
         pieceAutoRepository.deleteById(id);
     }
 
+    public void updatePieceAuto(Long id, PieceAuto pieceAuto) {
+        Optional<PieceAuto> existingPieceOpt = pieceAutoRepository.findById(id);
+        if (existingPieceOpt.isPresent()) {
+            PieceAuto existingPiece = existingPieceOpt.get();
+            existingPiece.setNom(pieceAuto.getNom());
+            existingPiece.setReference(pieceAuto.getReference());
+            existingPiece.setMarque(pieceAuto.getMarque());
+            existingPiece.setPrix(pieceAuto.getPrix());
+            existingPiece.setFournisseur(pieceAuto.getFournisseur());
+            pieceAutoRepository.save(existingPiece);
+        }
+    }
 }

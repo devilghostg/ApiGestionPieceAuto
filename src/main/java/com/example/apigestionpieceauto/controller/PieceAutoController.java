@@ -40,8 +40,13 @@ class PieceAutoController {
 
     @GetMapping("/edit/{id}")
     public String editPieceAuto(@PathVariable Long id, Model model) {
-        model.addAttribute("id", pieceAutoService.getPieceAutoById(id));
-        return "pieces/edit";
+        Optional<PieceAuto> pieceAuto = pieceAutoService.getPieceAutoById(id);
+        if (pieceAuto.isPresent()) {
+            model.addAttribute("pieceAuto", pieceAuto.get());
+            model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
+            return "pieces/edit";
+        }
+        return "redirect:/piece";
     }
 
     @PostMapping("/add")
@@ -50,9 +55,10 @@ class PieceAutoController {
         return "redirect:/piece";
     }
 
-    @PutMapping("/edit/{id}/send")
+    @PostMapping("/edit/{id}/send")
     public String updatePieceAuto(@PathVariable Long id, @ModelAttribute PieceAuto pieceAuto) {
-        return "redirect:/piece/" + id;
+        pieceAutoService.updatePieceAuto(id, pieceAuto);
+        return "redirect:/piece/show/" + id;
     }
 
     @DeleteMapping("/delete/{id}")
