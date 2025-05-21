@@ -32,15 +32,47 @@ public class PieceCarrosserieService {
         return (PieceCarrosserie) pieceCarrosserieRepository.findPieceCarrosserieByTypeCarrosserie(typeCarrosserie);
     }
 
-    public PieceCarrosserie createPieceCarrosserie(PieceCarrosserie pieceCarrosserie) {
-        return pieceCarrosserieRepository.save(pieceCarrosserie);
+    public void createPieceCarrosserie(PieceCarrosserie pieceCarrosserie) {
+        pieceCarrosserieRepository.save(pieceCarrosserie);
     }
 
     public void deletePieceCarrosserie(Long id) {
         pieceCarrosserieRepository.deleteById(id);
     }
 
+    public void updatePieceCarrosserie(Long id, PieceCarrosserie pieceCarrosserie) {
+        Optional<PieceCarrosserie> existingPieceCarrosserieOpt = pieceCarrosserieRepository.findById(id);
+        if (existingPieceCarrosserieOpt.isPresent()) {
+            PieceCarrosserie existingPieceCarrosserie = existingPieceCarrosserieOpt.get();
+            existingPieceCarrosserie.setNom(pieceCarrosserie.getNom());
+            existingPieceCarrosserie.setReference(existingPieceCarrosserie.getReference());
+            existingPieceCarrosserie.setMarque(existingPieceCarrosserie.getMarque());
+            existingPieceCarrosserie.setPrix(existingPieceCarrosserie.getPrix());
+            existingPieceCarrosserie.setTypeCarrosserie(pieceCarrosserie.getTypeCarrosserie());
+            existingPieceCarrosserie.setCouleur(pieceCarrosserie.getCouleur());
+            existingPieceCarrosserie.setFournisseur(existingPieceCarrosserie.getFournisseur());
+            existingPieceCarrosserie.setVehicules(existingPieceCarrosserie.getVehicules());
+            pieceCarrosserieRepository.save(existingPieceCarrosserie);
+        }
+
+//        pieceCarrosserieRepository.save(pieceCarrosserie);
+    }
+
     public void updatePieceCarrosserie(PieceCarrosserie pieceCarrosserie) {
+        /*Optional<PieceCarrosserie> existingPieceCarrosserieOpt = pieceCarrosserieRepository.findById(id);
+        if (existingPieceCarrosserieOpt.isPresent()) {
+            PieceCarrosserie existingPieceCarrosserie = existingPieceCarrosserieOpt.get();
+            existingPieceCarrosserie.setNom(pieceCarrosserie.getNom());
+            existingPieceCarrosserie.setReference(existingPieceCarrosserie.getReference());
+            existingPieceCarrosserie.setMarque(existingPieceCarrosserie.getMarque());
+            existingPieceCarrosserie.setPrix(existingPieceCarrosserie.getPrix());
+            existingPieceCarrosserie.setTypeCarrosserie(pieceCarrosserie.getTypeCarrosserie());
+            existingPieceCarrosserie.setCouleur(pieceCarrosserie.getCouleur());
+            existingPieceCarrosserie.setFournisseur(existingPieceCarrosserie.getFournisseur());
+            existingPieceCarrosserie.setVehicules(existingPieceCarrosserie.getVehicules());
+            pieceCarrosserieRepository.save(existingPieceCarrosserie);
+        }*/
+
         pieceCarrosserieRepository.save(pieceCarrosserie);
     }
 

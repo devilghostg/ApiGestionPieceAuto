@@ -52,7 +52,10 @@ class PieceCarrosserieController {
 
     @GetMapping("/edit/{id}")
     public String editPieceCarrosserie(@PathVariable Long id, Model model) {
-        model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id));
+        model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id).orElseThrow(()-> new RuntimeException("Carrosserie not found")));
+        model.addAttribute("typeCarrosserie", TypeCarrosserie.values());
+        model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
+        model.addAttribute("vehicules", vehiculeService.findAllVehicules());
         return "pieces/carrosserie/edit";
     }
 
@@ -77,12 +80,12 @@ class PieceCarrosserieController {
      * Ajouté la fonctionnalité de update dans le Service
      * @param id
      * @param pieceCarrosserie
-     * @return redirect:piece/moteur/id
+     * @return redirect:piece/carrosserie/id
      */
-    @PutMapping("/edit/{id}/send")
+    @PostMapping("/edit/{id}")
     public String updatePieceCarrosserie(@PathVariable Long id, @ModelAttribute PieceCarrosserie pieceCarrosserie) {
         pieceCarrosserieService.updatePieceCarrosserie(pieceCarrosserie);
-        return "redirect:piece/moteur/" + id;
+        return "redirect:/piece/carrosserie/" + id;
     }
 
     /**
@@ -92,7 +95,7 @@ class PieceCarrosserieController {
     @DeleteMapping("/delete/{id}")
     public String deletePieceCarrosserie(@PathVariable Long id) {
         pieceCarrosserieService.deletePieceCarrosserie(id);
-        return "redirect:piece/moteur";
+        return "redirect:piece/carrosserie";
     }
 
 }

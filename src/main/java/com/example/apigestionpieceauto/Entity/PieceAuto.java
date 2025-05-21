@@ -17,9 +17,9 @@ public class PieceAuto {
     private String marque;
     private Integer prix;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fournisseur_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Fournisseur fournisseur;
 
     @ManyToMany(mappedBy = "pieceAutos")
