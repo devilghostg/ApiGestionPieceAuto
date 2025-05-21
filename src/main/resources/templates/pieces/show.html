@@ -357,6 +357,7 @@
                         Modifier la pièce
                     </a>
                     <form th:action="@{/piece/delete/{id}(id=${pieceAuto.id})}" method="post" class="delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette pièce ?');">
+                        <input type="hidden" name="_method" value="POST"/>
                         <button type="submit" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
                             Supprimer

@@ -61,12 +61,6 @@ class PieceAutoController {
         return "redirect:/piece/show/" + id;
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deletePieceAuto(@PathVariable Long id) {
-        pieceAutoService.deletePieceAutoById(id);
-        return "redirect:/piece";
-    }
-
     @GetMapping("/show/{id}")
     public String showPieceAuto(@PathVariable Long id, Model model) {
         Optional<PieceAuto> pieceAuto = pieceAutoService.getPieceAutoById(id);
@@ -79,4 +73,9 @@ class PieceAutoController {
         return "redirect:/piece";
     }
 
+    @PostMapping("/delete/{id}")
+    public String deletePieceAuto(@PathVariable Long id) {
+        pieceAutoService.deletePieceAutoById(id);
+        return "redirect:/piece";
+    }
 }
