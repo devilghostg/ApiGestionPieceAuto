@@ -1,6 +1,8 @@
 package com.example.apigestionpieceauto.controller;
 
+import com.example.apigestionpieceauto.Entity.PieceAuto;
 import com.example.apigestionpieceauto.Entity.PieceCarrosserie;
+import com.example.apigestionpieceauto.Entity.PieceMoteur;
 import com.example.apigestionpieceauto.Entity.TypeCarrosserie;
 import com.example.apigestionpieceauto.service.PieceCarrosserieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,12 +22,27 @@ class PieceCarrosserieController {
     private PieceCarrosserieService pieceCarrosserieService;
 
     @GetMapping
-    public String getPieceCarrosserie(Model model) {
+    public String getPieceCarrosseries(Model model) {
         model.addAttribute("pieceCarrosserie", pieceCarrosserieService.getAllPieceCarrosseries());
-        return "piece/carrosserie/index";
+        return "pieces/carrosserie/index";
     }
 
+    @GetMapping("/{id}")
+    public String getPieceCarrosserieById(@PathVariable Long id, Model model) {
+        model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id));
+        return "pieces/carrosserie/show";
+    }
 
+    @GetMapping("/new")
+    public String newPieceCarrosserie() {
+        return "pieces/carrosserie/new";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editPieceCarrosserie(@PathVariable Long id, Model model) {
+        model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id));
+        return "pieces/carrosserie/edit";
+    }
 
     @GetMapping("/type/{typeCarrosserie}")
     public String getTypeCarrosserie(@PathVariable TypeCarrosserie typeCarrosserie, Model model) {
@@ -39,4 +54,33 @@ class PieceCarrosserieController {
     public ResponseEntity<List<PieceCarrosserie>> aluminium() {
         return new ResponseEntity<>(pieceCarrosserieRepository.findPieceCarrosserieByTypeCarrosserie(TypeCarrosserie.ALUMINIUM), HttpStatus.OK);
     }*/
+
+    @PostMapping("/new/send")
+    public String createPieceCarrosserie(PieceCarrosserie pieceCarrosserie) {
+        pieceCarrosserieService.createPieceCarrosserie(pieceCarrosserie);
+        return "redirect:/piece/carrosserie";
+    }
+
+    /**
+     * Ajouté la fonctionnalité de update dans le Service
+     * @param id
+     * @param pieceCarrosserie
+     * @return redirect:piece/moteur/id
+     */
+    @PutMapping("/edit/{id}/send")
+    public String updatePieceCarrosserie(@PathVariable Long id, @ModelAttribute PieceCarrosserie pieceCarrosserie) {
+        pieceCarrosserieService.updatePieceCarrosserie(pieceCarrosserie);
+        return "redirect:piece/moteur/" + id;
+    }
+
+    /**
+     * @param id Id de l'élement à supprimer
+     * @return redirect vers la page à l'addresse {@link "http://server.name:8080/piece/carrosserie"}
+     */
+    @DeleteMapping("/delete/{id}")
+    public String deletePieceCarrosserie(@PathVariable Long id) {
+        pieceCarrosserieService.deletePieceCarrosserie(id);
+        return "redirect:piece/moteur";
+    }
+
 }

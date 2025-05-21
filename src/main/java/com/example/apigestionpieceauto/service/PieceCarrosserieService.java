@@ -24,7 +24,7 @@ public class PieceCarrosserieService {
         return pieceCarrosserieRepository.findAll();
     }
 
-    public Optional<PieceCarrosserie> getPieceCarrosserie(Long id) {
+    public Optional<PieceCarrosserie> getPieceCarrosserieById(Long id) {
         return pieceCarrosserieRepository.findById(id);
     }
 
