@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.example.apigestionpieceauto.service.FournisseurService;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/piece")
@@ -13,6 +16,9 @@ class PieceAutoController {
 
     @Autowired
     private PieceAutoService pieceAutoService;
+
+    @Autowired
+    private FournisseurService fournisseurService;
 
     @GetMapping
     public String pieceAuto(Model model) {
@@ -27,7 +33,8 @@ class PieceAutoController {
     }
 
     @GetMapping("/new")
-    public String addPieceAuto() {
+    public String addPieceAuto(Model model) {
+        model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
         return "pieces/new";
     }
 
@@ -38,7 +45,7 @@ class PieceAutoController {
     }
 
     @PostMapping("/add")
-    public String createPieceAuto(@ModelAttribute("pieceAutos") PieceAuto pieceAuto) {
+    public String createPieceAuto(@ModelAttribute PieceAuto pieceAuto) {
         pieceAutoService.createPieceAuto(pieceAuto);
         return "redirect:/piece";
     }
@@ -51,6 +58,18 @@ class PieceAutoController {
     @DeleteMapping("/delete/{id}")
     public String deletePieceAuto(@PathVariable Long id) {
         pieceAutoService.deletePieceAutoById(id);
+        return "redirect:/piece";
+    }
+
+    @GetMapping("/show/{id}")
+    public String showPieceAuto(@PathVariable Long id, Model model) {
+        Optional<PieceAuto> pieceAuto = pieceAutoService.getPieceAutoById(id);
+        if (pieceAuto.isPresent()) {
+            PieceAuto piece = pieceAuto.get();
+            model.addAttribute("pieceAuto", piece);
+            model.addAttribute("fournisseur", piece.getFournisseur());
+            return "pieces/show";
+        }
         return "redirect:/piece";
     }
 

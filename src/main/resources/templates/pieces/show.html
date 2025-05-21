@@ -1,10 +1,374 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${'Détails - ' + pieceAuto.nom}">Détails de la pièce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: rgb(144, 71, 2);
+            --secondary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--light-bg);
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            margin-top: 5rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .detail-card {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .detail-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .detail-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-header .reference {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .detail-content {
+            padding: 2rem;
+        }
+
+        .detail-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        .stat-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-section {
+            background: var(--white);
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .info-section:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .info-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-item i {
+            color: var(--accent-color);
+            width: 20px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .delete-form {
+            display: inline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-car"></i>
+                GestionAuto
+            </a>
+            <div class="nav-links">
+                <a th:href="@{/}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Accueil
+                </a>
+                <a th:href="@{/piece}" class="nav-link">
+                    <i class="fas fa-cogs"></i>
+                    Pièces
+                </a>
+                <a th:href="@{/fournisseur}" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Fournisseurs
+                </a>
+            </div>
+        </div>
+    </nav>
 
+    <main class="main-content">
+        <div class="detail-card">
+            <div class="detail-header">
+                <h1 th:text="${pieceAuto.nom}">Nom de la pièce</h1>
+                <p class="reference">
+                    <i class="fas fa-hashtag"></i>
+                    Référence: <span th:text="${pieceAuto.reference}">REF123</span>
+                </p>
+            </div>
+
+            <div class="detail-content">
+                <div class="detail-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-tag"></i>
+                        <div class="stat-value" th:text="${pieceAuto.prix + ' €'}">0.00 €</div>
+                        <div class="stat-label">Prix</div>
+                    </div>
+                    <!--/* -->
+                    <div class="stat-item">
+                        <i class="fas fa-weight-hanging"></i>
+                        <div class="stat-value" th:text="${pieceAuto.poids + ' kg'}">0 kg</div>
+                        <div class="stat-label">Poids</div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-box"></i>
+                        <div class="stat-value" th:text="">0</div>
+                        <div class="stat-label">En stock</div>
+                    </div>
+                    <!--*/-->
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-section">
+                        <h3>
+                            <i class="fas fa-info-circle"></i>
+                            Informations générales
+                        </h3>
+                        <div class="info-item">
+                            <i class="fas fa-trademark"></i>
+                            <span>Marque: <strong th:text="${pieceAuto.marque}">Marque</strong></span>
+                        </div>
+                        <!--/* -->
+                        <div class="info-item" th:if="${pieceAuto.modele != null}">
+                            <i class="fas fa-car"></i>
+                            <span>Modèle compatible: <strong th:text="${pieceAuto.modele}">-</strong></span>
+                        </div>
+                        <!--*/-->
+                    </div>
+
+                    <div class="info-section">
+                        <h3>
+                            <i class="fas fa-building"></i>
+                            Fournisseur
+                        </h3>
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <span>Nom: <strong th:text="${fournisseur.nom}">-</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>
+                            <i class="fas fa-box"></i>
+                            Détails techniques
+                        </h3>
+                        <div class="info-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Référence: <strong th:text="${pieceAuto.reference}">-</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a th:href="@{/piece/edit/{id}(id=${pieceAuto.id})}" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Modifier la pièce
+                    </a>
+                    <form th:action="@{/piece/delete/{id}(id=${pieceAuto.id})}" method="post" class="delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette pièce ?');">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Supprimer
+                        </button>
+                    </form>
+                    <a th:href="@{/piece}" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à la liste
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
