@@ -29,6 +29,7 @@ body {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     min-height: 60vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -90,7 +91,38 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
+.hero > .navbar{
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.navbar > div{
+    display: flex;
+    gap: 1rem;
+}
+.navbar > div > div{
+    display: flex;
+    gap: 1rem;
+}
+.navbar > div > a, div > div > a{
+    text-decoration: none;
+    color: var(--white);
+    padding: 1rem 2rem;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.navbar > div > a:hover, div > div > a:hover{
+    color: var(--accent-color);
+}
 .btn i {
     font-size: 1.2rem;
 }
@@ -318,3 +350,4 @@ footer {
         font-size: 1.5rem;
     }
 }
+

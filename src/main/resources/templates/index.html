@@ -9,6 +9,23 @@
 </head>
 <body>
     <header class="hero">
+        <nav class="navbar">
+            <div class="nav-content">
+                <a href="/" class="logo">
+                    <i class="fas fa-car"></i> GestionAuto
+                </a>
+                <div class="nav-links">
+                    <a th:href="@{/fournisseur}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        Fournisseurs
+                    </a>
+                    <a th:href="@{/piece}" class="nav-link">
+                        <i class="fas fa-cogs"></i>
+                        Pièces
+                    </a>
+                </div>
+            </div>
+        </nav>
         <div class="header-content">
             <h1>Gestion Pièces Auto</h1>
             <p class="subtitle">Système intelligent de gestion des pièces automobiles</p>

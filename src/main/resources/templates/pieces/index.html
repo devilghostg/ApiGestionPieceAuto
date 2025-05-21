@@ -3,58 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/home/header.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Gestion Pièces Auto - Accueil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: rgb(144, 71, 2);
+            --secondary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .main-content {
+            margin-top: 5rem;
+            padding: 2rem;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color), #1d4ed8);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .card-body p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-footer {
+            padding: 1rem;
+            background: #f8fafc;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-    
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Piece Auto</title>
-</head>
-<body>
-    <header class="header-title">
-        <h1>Gestion de piéces</h1>
-        <p class="subtitle">Système de gestion des pièces automobiles</p>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-car"></i>
+                GestionAuto
+            </a>
+            <div class="nav-links">
+                <a th:href="@{/}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Accueil
+                </a>
+                <a th:href="@{/piece/new}" class="nav-link active">
+                    <i class="fas fa-plus"></i>
+                    Nouvelle pièce
+                </a>
+                <a th:href="@{/piece}" class="nav-link">
+                    <i class="fas fa-cogs"></i>
+                    Pièces
+                </a>
+                <a th:href="@{/fournisseur}" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Fournisseurs
+                </a>
+            </div>
+        </div>
+    </nav>
 
-        <nav>
-            <ul>
-                <li>
-                    <a th:href="@{/piece/new}">Ajouter une piece</a>
-                </li>
-                <li>
-                    <a th:href="@{/piece/carrosserie}">Liste des piéces de carrosseries</a>
-                </li>
-                <li>
-                    <a th:href="@{/piece/moteur}">Liste des piéces de moteurs</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <main class="main-content">
+        <div class="header-section">
+            <h1>Gestion des pièces</h1>
+            <p>Système intelligent de gestion des pièces automobiles</p>
+        </div>
 
-    <main>
-        <section>
-            <div>
-                <div th:each="pieceAuto: ${pieceAutos}">
-                    <div>
-                        <h3 th:text="${pieceAuto.nom}"></h3>
-                    </div>
-                    <div>
-                        <p><span th:text="${pieceAuto.reference}"></span></p>
-                        <p><span th:text="${pieceAuto.marque}"></span></p>
-                        <p><span th:text="${pieceAuto.prix}"></span></p>
-                    </div>
-                    <div>
-                        <a th:href="@{/piece/{id}(id=${pieceAuto.id})}">Voir details</a>
-                        <a th:href="@{/piece/edit/{id}(id=${pieceAuto.id})}">Modifier</a>
-                    </div>
+        <div class="grid-container">
+            <div th:each="pieceAuto: ${pieceAutos}" class="card">
+                <div class="card-header">
+                    <i class="fas fa-cog"></i>
+                    <h3 th:text="${pieceAuto.nom}">Nom de la pièce</h3>
+                </div>
+                <div class="card-body">
+                    <p>
+                        <i class="fas fa-hashtag"></i>
+                        <span th:text="${pieceAuto.reference}">Référence</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-trademark"></i>
+                        <span th:text="${pieceAuto.marque}">Marque</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-tag"></i>
+                        <span th:text="${pieceAuto.prix + ' €'}">Prix</span>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/piece/{id}(id=${pieceAuto.id})}" class="btn btn-primary">
+                        <i class="fas fa-eye"></i>
+                        Détails
+                    </a>
+                    <a th:href="@{/piece/edit/{id}(id=${pieceAuto.id})}" class="btn btn-secondary">
+                        <i class="fas fa-edit"></i>
+                        Modifier
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
-
 </body>
 </html>

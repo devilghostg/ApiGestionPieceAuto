@@ -277,3 +277,112 @@ footer {
         justify-content: center;
     }
 }
+
+
+/* ========== PAGE PIECES ========== */
+
+.pieces-list {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.pieces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* Carte individuelle */
+.piece-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.piece-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* En-tête de la carte */
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.card-header i {
+    font-size: 1.4rem;
+}
+
+/* Corps de la carte */
+.card-body {
+    padding: 1.2rem 1.5rem;
+}
+
+.card-body p {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.card-body i {
+    color: var(--primary-color);
+}
+
+/* Pied de carte (actions) */
+.card-footer {
+    padding: 1rem 1.5rem;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-details, .btn-edit {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-details {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-edit {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-details:hover,
+.btn-edit:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .btn-details,
+    .btn-edit {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
