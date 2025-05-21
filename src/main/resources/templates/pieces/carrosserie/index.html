@@ -2,9 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Piéce Carrosserie</title>
 </head>
 <body>
+    <header class="header-title">
+        <h1>Gestion de piéces de carrosseries</h1>
+        <p class="subtitle">Système de gestion des pièces de carrosserie</p>
+
+        <nav>
+            <ul>
+                <li>
+                    <a th:href="@{/piece/new}">Ajouter une piece</a>
+                </li>
+                <li>
+                    <a th:href="@{/piece/carrosserie}">Liste des piéces de carrosseries</a>
+                </li>
+                <li>
+                    <a th:href="@{/piece/moteur}">Liste des piéces de moteurs</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <div>
+                <div th:each="pieceAuto: ${pieceAutos}">
+                    <div>
+                        <h3 th:text="${pieceAuto.nom}"></h3>
+                    </div>
+                    <div>
+                        <p><span th:text="${pieceAuto.reference}"></span></p>
+                        <p><span th:text="${pieceAuto.marque}"></span></p>
+                        <p><span th:text="${pieceAuto.prix}"></span></p>
+                    </div>
+                    <div>
+                        <a th:href="@{/piece/{id}(id=${pieceAuto.id})}">Voir details</a>
+                        <a th:href="@{/piece/edit/{id}(id=${pieceAuto.id})}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>

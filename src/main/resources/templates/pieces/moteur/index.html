@@ -2,9 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Piece Moteur</title>
 </head>
 <body>
+    <header class="header-title">
+        <h1>Gestion de piéces Moteur</h1>
+        <p class="subtitle">Système de gestion des pièces de Moteur</p>
+
+        <nav>
+            <ul>
+                <li>
+                    <a th:href="@{/piece/moteur/new}">Ajouter une piece moteur</a>
+                </li>
+                <li>
+                    <a th:href="@{/piece/carrosserie}">Liste des piéces de carrosseries</a>
+                </li>
+                <!--<li>
+                    <a th:href="@{/piece/moteur}">Liste des piéces de moteurs</a>
+                </li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <div>
+                <div th:each="moteur: ${moteurs}">
+                    <div>
+                        <h3 th:text="${moteur.nom}"></h3>
+                    </div>
+                    <div>
+                        <p><span th:text="${moteur.reference}"></span></p>
+                        <p><span th:text="${moteur.marque}"></span></p>
+                        <p><span th:text="${moteur.typeMoteur} + ' - ' + ${moteur.puissance}"></span></p>
+                        <p><span th:text="${moteurs.prix}"></span></p>
+                    </div>
+                    <div>
+                        <a th:href="@{/piece/moteur/{id}(id=${pieceAuto.id})}">Voir details</a>
+                        <a th:href="@{/piece/moteur/edit/{id}(id=${pieceAuto.id})}">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>
