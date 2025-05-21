@@ -43,7 +43,29 @@
                         </option>
                     </select>
                 </div>
-                
+
+                <div class="mb-3">
+                    <label for="vehicule">fournisseur de carrosserie</label>
+                    <select class="form-select" name="vehicule" id="vehicule" required>
+                        <option value="" disabled selected>-- Sélectionner un fournisseur --</option>
+                        <option th:each="fournisseur: ${fournisseurs}"
+                                th:value="${fournisseur.id}"
+                                th:text="${fournisseur.nom}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="vehicules">vehicules</label>
+                    <select class="form-select" name="vehicules" id="vehicules" multiple>
+                        <option value="" disabled selected>-- Sélectionner un vehicules --</option>
+                        <option th:each="vehicule: ${vehicules}"
+                                th:value="${vehicule.id}"
+                                th:text="${vehicule.modele}">
+                        </option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Créer la piéce</button>
                 <a th:href="@{/piece/carrosserie}" class="btn btn-secondary">Annuler</a>
             </form>

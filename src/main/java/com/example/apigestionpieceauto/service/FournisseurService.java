@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-class FournisseurService {
+public class FournisseurService {
 
     @Autowired
     private FournisseurRepository fournisseurRepository;

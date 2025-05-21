@@ -4,7 +4,9 @@ import com.example.apigestionpieceauto.Entity.PieceAuto;
 import com.example.apigestionpieceauto.Entity.PieceCarrosserie;
 import com.example.apigestionpieceauto.Entity.PieceMoteur;
 import com.example.apigestionpieceauto.Entity.TypeCarrosserie;
+import com.example.apigestionpieceauto.service.FournisseurService;
 import com.example.apigestionpieceauto.service.PieceCarrosserieService;
+import com.example.apigestionpieceauto.service.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,12 @@ class PieceCarrosserieController {
     @Autowired
     private PieceCarrosserieService pieceCarrosserieService;
 
+    @Autowired
+    private FournisseurService fournisseurService;
+
+    @Autowired
+    private VehiculeService vehiculeService;
+
     @GetMapping
     public String getPieceCarrosseries(Model model) {
         model.addAttribute("pieceCarrosseries", pieceCarrosserieService.getAllPieceCarrosseries());
@@ -36,8 +44,9 @@ class PieceCarrosserieController {
 
     @GetMapping("/new")
     public String newPieceCarrosserie(Model model) {
-        System.out.println(Arrays.toString(TypeCarrosserie.values()));
         model.addAttribute("typeCarrosserie", TypeCarrosserie.values());
+        model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
+        model.addAttribute("vehicules", vehiculeService.findAllVehicules());
         return "pieces/carrosserie/new";
     }
 
