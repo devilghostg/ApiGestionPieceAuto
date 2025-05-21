@@ -13,11 +13,11 @@
             <h1>Gestion Pièces Auto</h1>
             <p class="subtitle">Système intelligent de gestion des pièces automobiles</p>
             <div class="hero-buttons">
-                <a href="/fournisseur" class="btn btn-primary">
+                <a th:href="@{/fournisseur}" class="btn btn-primary">
                     <i class="fas fa-users"></i>
                     Gérer les fournisseurs
                 </a>
-                <a href="/pieces" class="btn btn-secondary">
+                <a th:href="@{/piece}" class="btn btn-secondary">
                     <i class="fas fa-cogs"></i>
                     Voir les pièces
                 </a>
@@ -58,7 +58,7 @@
         <section class="quick-actions">
             <h2>Actions Rapides</h2>
             <div class="actions-grid">
-                <a href="/fournisseur/create" class="action-card">
+                <a class="action-card" th:href="@{/fournisseur}">
                     <i class="fas fa-plus-circle"></i>
                     <span>Nouveau Fournisseur</span>
                 </a>
@@ -100,5 +100,6 @@
             <p>&copy; 2025 Gestion Pièces Auto. Tous droits réservés.</p>
         </div>
     </footer>
+
 </body>
 </html>

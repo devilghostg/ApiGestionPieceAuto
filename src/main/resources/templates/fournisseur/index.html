@@ -35,12 +35,6 @@
                         Fournisseurs aluminium
                     </a>
                 </li>
-                <li>
-                    <a href="/fournisseur/bois">
-                        <i class="fas fa-tree"></i>
-                        Fournisseurs bois
-                    </a>
-                </li>
             </ul>
         </nav>
     </header>
@@ -59,7 +53,7 @@
                         <p><i class="fas fa-phone"></i> <span th:text="${fournisseur.telephone}">Téléphone</span></p>
                     </div>
                     <div class="card-footer">
-                        <a th:href="@{/fournisseur/{id}(id=${fournisseur.id})}" class="btn-details">
+                        <a th:href="@{/fournisseur/show/{id}(id=${fournisseur.id})}" class="btn-details">
                             <i class="fas fa-eye"></i> Voir détails
                         </a>
                         <a th:href="@{/fournisseur/{id}/edit(id=${fournisseur.id})}" class="btn-edit">

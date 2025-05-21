@@ -96,12 +96,12 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color) !important;
     color: var(--white);
 }
 
 .btn-secondary {
-    background-color: transparent;
+    background-color: transparent !important;
     color: var(--white);
     border: 2px solid var(--white);
 }
@@ -207,6 +207,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    border: none;
 }
 
 .action-card i {

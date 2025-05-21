@@ -314,3 +314,37 @@ nav ul li a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+
+
+
+
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #4e73df, #224abe) !important;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-item {
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateX(5px);
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
