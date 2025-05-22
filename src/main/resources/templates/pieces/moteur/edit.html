@@ -2,9 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/fournisseur/header.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Modifier la piéce de moteur</title>
 </head>
 <body>
+
+    <header>
+        <div class="header-title">
+            <h1>Modifier le Fournisseur</h1>
+            <p class="subtitle">Modification des informations du fournisseur</p>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a th:href="@{/piece/moteur/{id}(id=${moteur.id})}" class="btn-retour">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour aux détails
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h2>Modifier la pièce</h2>
+
+        <form th:action="@{/piece/moteur/edit/{id}(id=${moteur.id})}" method="post">
+            <!--            <input type="hidden" name="_method" value="put"/>-->
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom de la piéce</label>
+                <input type="text" class="form-control" id="nom" name="nom" th:value="${moteur.nom}" required>
+            </div>
+            <div class="mb-3">
+                <label for="reference" class="form-label">Reference de la piéce</label>
+                <input type="text" class="form-control" id="reference" name="reference" th:value="${moteur.reference}" required>
+            </div>
+            <div class="mb-3">
+                <label for="marque" class="form-label">Marque de la piéce</label>
+                <input type="text" class="form-control" id="marque" name="marque" th:value="${moteur.marque}" required>
+            </div>
+            <div class="mb-3">
+                <label for="prix" class="form-label">Prix de la piéce</label>
+                <input type="number" class="form-control" id="prix" name="prix" th:value="${moteur.prix}" required>
+            </div>
+            <div class="mb-3">
+                <label for="couleur">Couleur</label>
+                <input type="text" class="form-control" id="couleur" name="couleur" th:value="${moteur.couleur}">
+            </div>
+
+            <div class="mb-3">
+                <label for="typemoteur">Type de moteur</label>
+                <select class="form-select" name="typemoteur" id="typemoteur" required>
+                    <option value="" disabled selected>-- Sélectionner un type --</option>
+                    <option th:each="type: ${typeMoteurs}"
+                            th:value="${type}"
+                            th:text="${type}"
+                            th:selected="${type} == ${moteur.typeMoteur}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="fournisseur">fournisseur de moteur</label>
+                <select class="form-select" name="fournisseur" id="fournisseur" required>
+                    <option value="" disabled selected>-- Sélectionner un fournisseur --</option>
+                    <option th:each="fournisseur: ${fournisseurs}"
+                            th:value="${fournisseur.id}"
+                            th:text="${fournisseur.nom}"
+                            th:selected="${moteur.fournisseur != null and fournisseur.id == moteur.fournisseur.id}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="vehicules">vehicules</label>
+                <select class="form-select" name="vehicules" id="vehicules" multiple th:if="${!#lists.isEmpty(vehicules)}">
+                    <option value="" disabled selected>-- Sélectionner un vehicules --</option>
+                    <option th:each="vehicule: ${vehicules}"
+                            th:value="${vehicule.id}"
+                            th:text="${vehicule.modele}"
+                            th:selected="${moteur.vehicules.contains(vehicule)}">
+                    </option>
+                </select>
+                <div th:unless="${!#lists.isEmpty(vehicules)}">
+                    <span>
+                        Aucun véhicules disponible
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Créer la piéce</button>
+            <a th:href="@{/piece/moteur}" class="btn btn-secondary">Annuler</a>
+        </form>
+
+    </main>
 
 </body>
 </html>
