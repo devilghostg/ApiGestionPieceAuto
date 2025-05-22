@@ -6,6 +6,7 @@ import com.example.apigestionpieceauto.service.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -21,42 +22,55 @@ class VehiculeController {
         return "vehicule/index";
     }
 
-    @GetMapping("/{id}")
-    public String getVehiculeById(@PathVariable Long id, Model model) {
-        model.addAttribute("vehicule", vehiculeService.findVehiculeById(id));
-        return "vehicule/show";
+    @GetMapping("/new")
+    public String newVehicule(Model model) {
+        model.addAttribute("vehicule", new Vehicule());
+        return "vehicule/new";
     }
 
-    @GetMapping("/new")
-    public String newVehicule() {
-        return "vehicule/new";
+
+    @PostMapping
+    public String saveVehicule(@ModelAttribute Vehicule vehicule) {
+        vehiculeService.createVehicule(vehicule);
+        return "redirect:/vehicule";
+    }
+
+
+    @GetMapping("/{id}")
+    public String getVehiculeById(@PathVariable Long id, Model model) {
+        Optional<Vehicule> optionalVehicule = vehiculeService.findVehiculeById(id);
+        if (optionalVehicule.isPresent()) {
+            model.addAttribute("vehicule", optionalVehicule.get());
+            return "vehicule/show";
+        } else {
+            return "redirect:/vehicule"; 
+        }
     }
 
     @GetMapping("/edit/{id}")
     public String editVehicule(@PathVariable Long id, Model model) {
-        model.addAttribute("vehicule", vehiculeService.findVehiculeById(id));
-        return "pieces/moteur/edit";
+        Optional<Vehicule> optionalVehicule = vehiculeService.findVehiculeById(id);
+        if (optionalVehicule.isPresent()) {
+            model.addAttribute("vehicule", optionalVehicule.get());
+            return "vehicule/edit";
+        } else {
+            return "redirect:/vehicule";
+        }
     }
 
-    @PostMapping("/new/send")
+    @PostMapping("/new")
     public String sendVehicule(@ModelAttribute Vehicule vehicule) {
         vehiculeService.createVehicule(vehicule);
         return "redirect:/vehicule";
     }
 
-    /**
-     * Ajouté la fonctionnalité de update dans le Service
-     * @param vehicule
-     * @param id
-     * @return
-     */
-    @PutMapping("/edit/{id}/send")
+    @PostMapping("/edit/{id}")
     public String updateVehicule(@ModelAttribute Vehicule vehicule, @PathVariable Long id) {
-        vehiculeService.createVehicule(vehicule);
+        vehiculeService.updateVehicule(id, vehicule);
         return "redirect:/vehicule";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteVehicule(@PathVariable Long id) {
         vehiculeService.deleteVehicule(id);
         return "redirect:/vehicule";

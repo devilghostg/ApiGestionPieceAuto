@@ -1,6 +1,7 @@
 package com.example.apigestionpieceauto.Entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.Set;
@@ -16,6 +17,7 @@ public class Vehicule {
 
     private String marque;
     private String modele;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date annee;
     private String immatriculation;
 
