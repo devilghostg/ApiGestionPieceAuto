@@ -29,6 +29,16 @@ public class PieceAuto {
         return id;
     }
 
+    private Integer stock;
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
     public PieceAuto(Long id, String reference, String nom, String marque, Integer prix) {
         this.id = id;
         this.reference = reference;
@@ -91,4 +101,5 @@ public class PieceAuto {
     public void setVehicules(Set<Vehicule> vehicules) {
         this.vehicules = vehicules;
     }
+
 }
