@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Modifier Véhicule</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: rgb(144, 71, 2);
+            border-bottom: 3px solid rgb(144, 71, 2);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgb(13 110 253 / 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #212529;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 25px;
+            background-color: rgb(144, 71, 2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e67e22;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: rgb(144, 71, 2);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modifier le véhicule</h1>
+
+    <form th:action="@{/vehicule/edit/{id}(id=${vehicule.id})}" th:object="${vehicule}" method="post">
+
+        <label for="marque">Marque</label>
+        <input type="text" id="marque" th:field="*{marque}" required />
+
+        <label for="modele">Modèle</label>
+        <input type="text" id="modele" th:field="*{modele}" required />
+
+        <label for="annee">Année</label>
+        <!-- conversion date en yyyy-MM-dd attendue -->
+        <input type="date" id="annee" th:field="*{annee}" required />
+
+        <label for="immatriculation">Immatriculation</label>
+        <input type="text" id="immatriculation" th:field="*{immatriculation}" />
+
+        <button type="submit">Enregistrer</button>
+    </form>
+
+    <a th:href="@{/vehicule}">← Retour à la liste des véhicules</a>
+</body>
+</html>

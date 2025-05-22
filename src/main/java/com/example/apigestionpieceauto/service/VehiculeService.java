@@ -35,4 +35,21 @@ public class VehiculeService {
         vehiculeRepository.deleteById(id);
     }
 
+    public Vehicule updateVehicule(Long id, Vehicule vehicule) {
+    Optional<Vehicule> existingVehicule = vehiculeRepository.findById(id);
+
+    if (existingVehicule.isPresent()) {
+        Vehicule v = existingVehicule.get();
+
+        v.setMarque(vehicule.getMarque());
+        v.setModele(vehicule.getModele());
+        v.setImmatriculation(vehicule.getImmatriculation());
+        v.setAnnee(vehicule.getAnnee());
+
+        return vehiculeRepository.save(v);
+    } else {
+        throw new RuntimeException("Véhicule non trouvé avec l'id : " + id);
+    }
+}
+
 }

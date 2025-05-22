@@ -1,10 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Liste des Véhicules</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            margin: 30px auto;
+            max-width: 900px;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: rgb(144, 71, 2); /* couleur bleu Bootstrap 5 */
+            border-bottom: 3px solid rgb(144, 71, 2);
+            padding-bottom: 8px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        a {
+            color: rgb(144, 71, 2);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: rgb(144, 71, 2);
+            text-decoration: underline;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 12px rgb(13 110 253 / 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        th {
+            background-color: rgb(144, 71, 2);
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        tr:hover {
+            background-color: #e7f1ff;
+            cursor: pointer;
+        }
+
+        .btn {
+            background-color: rgb(144, 71, 2);
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+
+        /* Action links style */
+        .actions a {
+            color: rgb(144, 71, 2);
+            font-weight: 600;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+            color: #e67e22;
+        }
+    </style>
 </head>
 <body>
+    <h1>Liste des Véhicules</h1>
+    <a href="/" class="btn">Retour à la liste</a>
+    <a th:href="@{/vehicule/new}" class="btn">Ajouter un nouveau véhicule</a>
 
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Année</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vehicule : ${vehicules}">
+                <td th:text="${vehicule.id}">1</td>
+                <td th:text="${vehicule.marque}">Toyota</td>
+                <td th:text="${vehicule.modele}">Corolla</td>
+                <td th:text="${vehicule.annee}">2020</td>
+                <td class="actions">
+                    <a th:href="@{/vehicule/edit/{id}(id=${vehicule.id})}">Modifier</a> |
+                    <a th:href="@{/vehicule/delete/{id}(id=${vehicule.id})}" 
+                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ?');">Supprimer</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(vehicules)}">
+                <td colspan="5" style="text-align:center; font-style: italic; color: #6c757d;">Aucun véhicule trouvé.</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
