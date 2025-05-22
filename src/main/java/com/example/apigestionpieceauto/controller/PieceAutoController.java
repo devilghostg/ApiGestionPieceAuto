@@ -28,7 +28,7 @@ class PieceAutoController {
 
     @GetMapping("/{id}")
     public String pieceAuto(@PathVariable Long id, Model model) {
-        model.addAttribute("pieceAutos", pieceAutoService.getPieceAutoById(id));
+        model.addAttribute("pieceAuto", pieceAutoService.getPieceAutoById(id));
         return "pieces/show";
     }
 

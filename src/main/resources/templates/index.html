@@ -3,43 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Pièces Auto - Accueil</title>
     <link rel="stylesheet" th:href="@{/home/header.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Gestion Pièces Auto - Accueil</title>
 </head>
 <body>
     <header class="hero">
         <nav class="navbar">
-            <div class="nav-content">
+            <div class="nav-container">
                 <a href="/" class="logo">
-                    <i class="fas fa-car"></i> GestionAuto
+                    <i class="fas fa-car"></i>
+                    GestionAuto
                 </a>
                 <div class="nav-links">
-                    <a th:href="@{/fournisseur}" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        Fournisseurs
+                    <a th:href="@{/}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Accueil
                     </a>
                     <a th:href="@{/piece}" class="nav-link">
                         <i class="fas fa-cogs"></i>
                         Pièces
                     </a>
+                    <a th:href="@{/fournisseur}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        Fournisseurs
+                    </a>
                 </div>
             </div>
         </nav>
-        <div class="header-content">
-            <h1>Gestion Pièces Auto</h1>
-            <p class="subtitle">Système intelligent de gestion des pièces automobiles</p>
-            <div class="hero-buttons">
-                <a th:href="@{/fournisseur}" class="btn btn-primary">
-                    <i class="fas fa-users"></i>
-                    Gérer les fournisseurs
-                </a>
-                <a th:href="@{/piece}" class="btn btn-secondary">
-                    <i class="fas fa-cogs"></i>
-                    Voir les pièces
-                </a>
-            </div>
-        </div>
+        <h1>Bienvenue sur la plateforme de gestion</h1>
+        <p>Optimisez votre gestion de pièces automobiles dès maintenant.</p>
     </header>
 
     <main>
@@ -59,7 +52,7 @@
                 </div>
                 <h2>Stock de Pièces</h2>
                 <p>Suivez votre inventaire en temps réel et gérez vos pièces automobiles facilement.</p>
-                <a href="/pieces" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
+                <a th:href="@{/piece}" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="feature-card">
@@ -68,7 +61,7 @@
                 </div>
                 <h2>Statistiques</h2>
                 <p>Analysez vos données et prenez des décisions éclairées grâce à nos tableaux de bord.</p>
-                <a href="/stats" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
             </div>
         </section>
 
@@ -79,15 +72,15 @@
                     <i class="fas fa-plus-circle"></i>
                     <span>Nouveau Fournisseur</span>
                 </a>
-                <a href="/pieces/create" class="action-card">
+                <a th:href="@{/piece/new}" class="action-card">
                     <i class="fas fa-plus"></i>
                     <span>Nouvelle Pièce</span>
                 </a>
-                <a href="/fournisseur/all" class="action-card">
+                <a th:href="@{/fournisseur}" class="action-card">
                     <i class="fas fa-list"></i>
                     <span>Liste Fournisseurs</span>
                 </a>
-                <a href="/pieces/all" class="action-card">
+                <a th:href="@{/piece}" class="action-card">
                     <i class="fas fa-boxes"></i>
                     <span>Inventaire</span>
                 </a>
@@ -101,8 +94,8 @@
                 <h3>Navigation Rapide</h3>
                 <ul>
                     <li><a href="/fournisseur">Fournisseurs</a></li>
-                    <li><a href="/pieces">Pièces</a></li>
-                    <li><a href="/stats">Statistiques</a></li>
+                    <li><a th:href="@{/piece}">Pièces</a></li>
+                    <li><a href="#">Statistiques</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -117,6 +110,5 @@
             <p>&copy; 2025 Gestion Pièces Auto. Tous droits réservés.</p>
         </div>
     </footer>
-
 </body>
 </html>
