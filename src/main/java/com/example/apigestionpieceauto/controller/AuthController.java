@@ -4,15 +4,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class RegisterController {
+public class AuthController {
+
     @GetMapping("/register")
     public String register() {
-        return "auth/register";  // correspond à templates/auth/register.html
+        return "auth/register";  // regarde bien le nom ici
     }
 
-    // tu peux garder aussi le login
     @GetMapping("/login")
     public String login() {
         return "auth/login";
     }
 }
+
