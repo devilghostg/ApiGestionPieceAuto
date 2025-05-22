@@ -3,102 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/fournisseur/header.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Modifier la piéce de moteur</title>
+    <title>Modifier une Pièce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: rgb(144, 71, 2);
+            --secondary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .main-content {
+            margin: 5rem auto;
+            max-width: 800px;
+            padding: 2rem;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(144, 71, 2, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-
-    <header>
-        <div class="header-title">
-            <h1>Modifier le Fournisseur</h1>
-            <p class="subtitle">Modification des informations du fournisseur</p>
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a th:href="@{/piece/moteur/{id}(id=${moteur.id})}" class="btn-retour">
-                        <i class="fas fa-arrow-left"></i>
-                        Retour aux détails
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
 
     <main class="main-content">
         <h2>Modifier la pièce</h2>
 
         <form th:action="@{/piece/moteur/edit/{id}(id=${moteur.id})}" method="post">
-            <!--            <input type="hidden" name="_method" value="put"/>-->
-            <div class="mb-3">
-                <label for="nom" class="form-label">Nom de la piéce</label>
-                <input type="text" class="form-control" id="nom" name="nom" th:value="${moteur.nom}" required>
-            </div>
-            <div class="mb-3">
-                <label for="reference" class="form-label">Reference de la piéce</label>
-                <input type="text" class="form-control" id="reference" name="reference" th:value="${moteur.reference}" required>
-            </div>
-            <div class="mb-3">
-                <label for="marque" class="form-label">Marque de la piéce</label>
-                <input type="text" class="form-control" id="marque" name="marque" th:value="${moteur.marque}" required>
-            </div>
-            <div class="mb-3">
-                <label for="prix" class="form-label">Prix de la piéce</label>
-                <input type="number" class="form-control" id="prix" name="prix" th:value="${moteur.prix}" required>
-            </div>
-            <div class="mb-3">
-                <label for="couleur">Couleur</label>
-                <input type="text" class="form-control" id="couleur" name="couleur" th:value="${moteur.couleur}">
-            </div>
+            <label for="nom" class="form-label">Nom de la piéce</label>
+            <input type="text" class="form-control" id="nom" name="nom" th:value="${moteur.nom}" required>
 
-            <div class="mb-3">
-                <label for="typemoteur">Type de moteur</label>
-                <select class="form-select" name="typemoteur" id="typemoteur" required>
-                    <option value="" disabled selected>-- Sélectionner un type --</option>
-                    <option th:each="type: ${typeMoteurs}"
-                            th:value="${type}"
-                            th:text="${type}"
-                            th:selected="${type} == ${moteur.typeMoteur}">
-                    </option>
-                </select>
-            </div>
 
-            <div class="mb-3">
-                <label for="fournisseur">fournisseur de moteur</label>
-                <select class="form-select" name="fournisseur" id="fournisseur" required>
-                    <option value="" disabled selected>-- Sélectionner un fournisseur --</option>
-                    <option th:each="fournisseur: ${fournisseurs}"
-                            th:value="${fournisseur.id}"
-                            th:text="${fournisseur.nom}"
-                            th:selected="${moteur.fournisseur != null and fournisseur.id == moteur.fournisseur.id}">
-                    </option>
-                </select>
-            </div>
+            <label for="reference" class="form-label">Reference de la piéce</label>
+            <input type="text" class="form-control" id="reference" name="reference" th:value="${moteur.reference}" required>
 
-            <div class="mb-3">
-                <label for="vehicules">vehicules</label>
-                <select class="form-select" name="vehicules" id="vehicules" multiple th:if="${!#lists.isEmpty(vehicules)}">
-                    <option value="" disabled selected>-- Sélectionner un vehicules --</option>
-                    <option th:each="vehicule: ${vehicules}"
-                            th:value="${vehicule.id}"
-                            th:text="${vehicule.modele}"
-                            th:selected="${moteur.vehicules.contains(vehicule)}">
-                    </option>
-                </select>
-                <div th:unless="${!#lists.isEmpty(vehicules)}">
-                    <span>
-                        Aucun véhicules disponible
-                    </span>
-                </div>
-            </div>
+            <label for="marque" class="form-label">Marque de la piéce</label>
+            <input type="text" class="form-control" id="marque" name="marque" th:value="${moteur.marque}" required>
 
-            <button type="submit" class="btn btn-primary">Créer la piéce</button>
-            <a th:href="@{/piece/moteur}" class="btn btn-secondary">Annuler</a>
+            <label for="prix" class="form-label">Prix de la piéce</label>
+            <input type="number" class="form-control" id="prix" name="prix" th:value="${moteur.prix}" required>
+
+            <label for="puissance">Puissance</label>
+            <input type="number" class="form-control" id="puissance" name="puissance" th:value="${moteur.puissance}">
+
+            <label for="typemoteur">Type de moteur</label>
+            <select class="form-select" name="typemoteur" id="typemoteur" required>
+                <option value="" disabled selected>-- Sélectionner un type --</option>
+                <option th:each="type: ${typeMoteurs}"
+                        th:value="${type}"
+                        th:text="${type}"
+                        th:selected="${type} == ${moteur.typeMoteur}">
+                </option>
+            </select>
+
+            <label for="fournisseur">fournisseur de moteur</label>
+            <select class="form-select" name="fournisseur" id="fournisseur" required>
+                <option value="" disabled selected>-- Sélectionner un fournisseur --</option>
+                <option th:each="fournisseur: ${fournisseurs}"
+                        th:value="${fournisseur.id}"
+                        th:text="${fournisseur.nom}"
+                        th:selected="${moteur.fournisseur != null and fournisseur.id == moteur.fournisseur.id}">
+                </option>
+            </select>
+
+            <label for="vehicules">vehicules</label>
+            <select class="form-select" name="vehicules" id="vehicules" multiple>
+                <option value="" disabled selected>-- Sélectionner un vehicules --</option>
+                <option th:each="vehicule: ${vehicules}"
+                        th:value="${vehicule.id}"
+                        th:text="${vehicule.modele}"
+                        th:selected="${moteur.vehicules.contains(vehicule)}">
+                </option>
+            </select>
+
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Créer la piéce</button>
+                <a th:href="@{/piece/moteur}" class="btn btn-secondary">Annuler</a>
+            </div>
         </form>
-
     </main>
-
 </body>
 </html>

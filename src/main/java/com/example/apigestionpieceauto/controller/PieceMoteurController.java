@@ -37,6 +37,7 @@ class PieceMoteurController {
 
     @GetMapping("/new")
     public String newPieceMoteur(Model model) {
+
         model.addAttribute("typeMoteurs", TypeMoteur.values());
         model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
         model.addAttribute("vehicules", vehiculeService.findAllVehicules());
@@ -64,10 +65,10 @@ class PieceMoteurController {
      * @param pieceMoteur
      * @return redirect:piece/moteur/id
      */
-    @PutMapping("/edit/{id}/send")
+    @PostMapping("/edit/{id}")
     public String updatePieceAuto(@PathVariable Long id, @ModelAttribute PieceMoteur pieceMoteur) {
         pieceMoteurService.createPieceMoteur(pieceMoteur);
-        return "redirect:piece/moteur/" + id;
+        return "redirect:/piece/moteur/" + id;
     }
 
     /**
