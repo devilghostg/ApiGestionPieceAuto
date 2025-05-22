@@ -1,7 +1,10 @@
 package com.example.apigestionpieceauto.controller;
 
 import com.example.apigestionpieceauto.Entity.PieceMoteur;
+import com.example.apigestionpieceauto.Entity.TypeMoteur;
+import com.example.apigestionpieceauto.service.FournisseurService;
 import com.example.apigestionpieceauto.service.PieceMoteurService;
+import com.example.apigestionpieceauto.service.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,12 @@ class PieceMoteurController {
     @Autowired
     private PieceMoteurService pieceMoteurService;
 
+    @Autowired
+    private FournisseurService fournisseurService;
+
+    @Autowired
+    private VehiculeService vehiculeService;
+
     @GetMapping
     public String pieceMoteurs(Model model) {
         model.addAttribute("moteurs", pieceMoteurService.findAllPieceMoteurs());
@@ -22,25 +31,31 @@ class PieceMoteurController {
 
     @GetMapping("/{id}")
     public String pieceMoteur(@PathVariable Long id, Model model) {
-        model.addAttribute("moteur", pieceMoteurService.findPieceMoteurById(id));
+        model.addAttribute("moteur", pieceMoteurService.findPieceMoteurById(id).orElseThrow(() -> new RuntimeException("Le moteur n'existe pas")));
         return "pieces/moteur/show";
     }
 
     @GetMapping("/new")
-    public String newPieceMoteur() {
+    public String newPieceMoteur(Model model) {
+        model.addAttribute("typeMoteurs", TypeMoteur.values());
+        model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
+        model.addAttribute("vehicules", vehiculeService.findAllVehicules());
         return "pieces/moteur/new";
     }
 
     @GetMapping("/edit/{id}")
     public String editPieceMoteur(@PathVariable Long id, Model model) {
-        model.addAttribute("moteur", pieceMoteurService.findPieceMoteurById(id));
+        model.addAttribute("moteur", pieceMoteurService.findPieceMoteurById(id).orElseThrow(() -> new RuntimeException("Le moteur n'existe pas")));
+        model.addAttribute("typeMoteurs", TypeMoteur.values());
+        model.addAttribute("fournisseurs", fournisseurService.getAllFournisseur());
+        model.addAttribute("vehicules", vehiculeService.findAllVehicules());
         return "pieces/moteur/edit";
     }
 
-    @PostMapping("/new/send")
+    @PostMapping("/new")
     public String createPieceMoteur(@ModelAttribute PieceMoteur pieceMoteur) {
         pieceMoteurService.createPieceMoteur(pieceMoteur);
-        return "redirect:piece/moteur";
+        return "redirect:/piece/moteur";
     }
 
     /**
