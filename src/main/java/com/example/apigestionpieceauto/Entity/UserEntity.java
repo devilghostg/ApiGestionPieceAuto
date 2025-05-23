@@ -1,4 +1,4 @@
-package com.example.apigestionpieceauto.entity;
+package com.example.apigestionpieceauto.Entity;
 
 import jakarta.persistence.*;
 
