@@ -10,6 +10,31 @@ Ce projet est une API REST développée avec **Spring Boot** qui permet de gére
 
 ---
 
+# Accueil : 
+- FEATURE : STATISTIQUE
+
+# Fournisseur
+- Ajouter btn delete 
+- Modifier titre header
+- Modifier style
+- Modifier type telephone
+
+# Piece / moteur / carrosserie
+- Modifier fournisseur NOT NULL
+- LIEN vers PIECE MOTEUR ET CARROSSERIE
+- Ajout Barre recherche
+- corriger text btn
+- Ajout liste vehicule par pieces
+- Changer form de piece (~~)
+- Modification form create moteur+ afffichage
+
+# Vehicule :
+- modif form 
+- modif affichage
+
+# TERMINER L'AUTH.
+
+
 ## 📌 Objectifs pédagogiques
 
 - Pratique de la modélisation objet (héritage, relations)
