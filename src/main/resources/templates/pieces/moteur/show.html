@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${'Détails - ' + moteur.nom}">Détails de la piéce Carrosserie</title>
+    <title th:text="${'Détails - ' + moteur.nom}">Détails de la piéce Moteur</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -325,9 +325,9 @@
                             <span>Marque: <strong th:text="${moteur.marque}">Marque</strong></span>
                         </div>
                         <!--/* -->
-                        <div class="info-item" th:if="${pieceAuto.modele != null}">
+                        <div class="info-item" th:if="${moteur.modele != null}">
                             <i class="fas fa-car"></i>
-                            <span>Modèle compatible: <strong th:text="${moteur.modele}">-</strong></span>
+                            <span>Modèle compatible : <strong th:text="${moteur.modele}">-</strong></span>
                         </div>
                         <!--*/-->
                     </div>
