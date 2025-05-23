@@ -38,6 +38,9 @@ class PieceCarrosserieController {
 
     @GetMapping("/{id}")
     public String getPieceCarrosserieById(@PathVariable Long id, Model model) {
+
+        System.out.println("Type carrosserie: " + pieceCarrosserieService.getPieceCarrosserieById(id).get().getTypeCarrosserie());
+
         model.addAttribute("carrosserie", pieceCarrosserieService.getPieceCarrosserieById(id).orElseThrow(()-> new RuntimeException("Carrosserie not found")));
         return "pieces/carrosserie/show";
     }
@@ -92,10 +95,10 @@ class PieceCarrosserieController {
      * @param id Id de l'élement à supprimer
      * @return redirect vers la page à l'addresse {@link "http://server.name:8080/piece/carrosserie"}
      */
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deletePieceCarrosserie(@PathVariable Long id) {
         pieceCarrosserieService.deletePieceCarrosserie(id);
-        return "redirect:piece/carrosserie";
+        return "redirect:/piece/carrosserie";
     }
 
 }

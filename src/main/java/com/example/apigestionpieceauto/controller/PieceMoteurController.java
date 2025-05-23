@@ -75,7 +75,7 @@ class PieceMoteurController {
      * @param id Id de l'élement à supprimer
      * @return redirect vers la page à l'addresse {@link "http://server.name:8080/piece/moteur"}
      */
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deletePieceMoteur(@PathVariable Long id) {
         pieceMoteurService.deletePieceMoteur(id);
         return "redirect:piece/moteur";
