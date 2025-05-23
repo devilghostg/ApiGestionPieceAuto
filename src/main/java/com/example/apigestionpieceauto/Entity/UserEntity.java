@@ -3,26 +3,20 @@ package com.example.apigestionpieceauto.Entity;
 import jakarta.persistence.*;
 
 @Entity
-public class UserEntity {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
+
     private String password;
-    private String role;
 
-    // Constructeurs
-    public UserEntity() {}
+    private String role = "USER";
 
-    public UserEntity(String username, String password, String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-    // Getters et setters
+        // Getters et setters
     public Long getId() {
         return id;
     }
