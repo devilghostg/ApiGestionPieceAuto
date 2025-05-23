@@ -21,12 +21,10 @@ Ce projet est une API REST développée avec **Spring Boot** qui permet de gére
 
 # Piece / moteur / carrosserie
 - Modifier fournisseur NOT NULL
-- LIEN vers PIECE MOTEUR ET CARROSSERIE
 - Ajout Barre recherche
 - corriger text btn
 - Ajout liste vehicule par pieces
 - Changer form de piece (~~)
-- Modification form create moteur+ afffichage
 
 # Vehicule :
 - modif form 
