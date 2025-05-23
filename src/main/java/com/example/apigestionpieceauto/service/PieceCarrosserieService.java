@@ -21,7 +21,7 @@ public class PieceCarrosserieService {
     }
 
     public List<PieceCarrosserie> getAllPieceCarrosseries() {
-        return pieceCarrosserieRepository.findAll();
+        return pieceCarrosserieRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<PieceCarrosserie> getPieceCarrosserieById(Long id) {

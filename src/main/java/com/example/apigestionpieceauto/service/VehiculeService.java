@@ -20,7 +20,7 @@ public class VehiculeService {
     }
 
     public List<Vehicule> findAllVehicules() {
-        return (List<Vehicule>) vehiculeRepository.findAll();
+        return vehiculeRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<Vehicule> findVehiculeById(Long id) {

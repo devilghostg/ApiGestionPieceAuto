@@ -20,7 +20,7 @@ public class PieceAutoService {
     }
 
     public List<PieceAuto> getAllPieceAuto() {
-        return (List<PieceAuto>) pieceAutoRepository.findAll();
+        return pieceAutoRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<PieceAuto> getPieceAutoById(Long id) {

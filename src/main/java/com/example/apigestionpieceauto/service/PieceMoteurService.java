@@ -20,7 +20,7 @@ public class PieceMoteurService {
     }
 
     public List<PieceMoteur> findAllPieceMoteurs() {
-        return (List<PieceMoteur>) pieceMoteurRepository.findAll();
+        return pieceMoteurRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<PieceMoteur> findPieceMoteurById(Long id) {

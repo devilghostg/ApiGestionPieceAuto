@@ -20,7 +20,7 @@ public class FournisseurService {
     }
 
     public List<Fournisseur> getAllFournisseur() {
-        return (List<Fournisseur>) fournisseurRepository.findAll();
+        return fournisseurRepository.findAllByOrderByIdAsc();
     }
 
     public Optional<Fournisseur> getFournisseurById(Long id) {

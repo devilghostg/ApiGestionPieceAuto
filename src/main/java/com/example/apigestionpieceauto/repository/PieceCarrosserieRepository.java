@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface PieceCarrosserieRepository extends JpaRepository<PieceCarrosserie, Long> {
     List<PieceCarrosserie> findPieceCarrosserieByTypeCarrosserie(TypeCarrosserie typeCarrosserie);
+
+    List<PieceCarrosserie> findAllByOrderByIdAsc();
 }
