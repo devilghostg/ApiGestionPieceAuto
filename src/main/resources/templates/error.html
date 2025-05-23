@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Pièce Automobile - Erreur</title>
+    <link rel="stylesheet" th:href="@{/home/header.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="hero">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <i class="fas fa-car"></i>
+                    GestionAuto
+                </a>
+                <div class="nav-links">
+                    <a th:href="@{/}" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Accueil
+                    </a>
+                    <a th:href="@{/piece}" class="nav-link">
+                        <i class="fas fa-cogs"></i>
+                        Pièces
+                    </a>
+                    <a th:href="@{/fournisseur}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        Fournisseurs
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <h1>Bienvenue sur la plateforme de gestion</h1>
+        <p>Optimisez votre gestion de pièces automobiles dès maintenant.</p>
+    </header>
+
+    <main>
+        <section class="features">
+            <i class="fas fa-triangle-exclamation"></i>
+            <h2>Erreur</h2>
+            <a href="/" class="feature-link">Retourner à l'accueil</a>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Navigation Rapide</h3>
+                <ul>
+                    <li><a href="/fournisseur">Fournisseurs</a></li>
+                    <li><a th:href="@{/piece}">Pièces</a></li>
+                    <li><a th:href="@{/vehicule}">Véhicules</a></li>
+                    <li><a href="#">Statistiques</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@pieceauto.com</li>
+                    <li><i class="fas fa-phone"></i> +123 456 789</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Gestion Pièces Auto. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
