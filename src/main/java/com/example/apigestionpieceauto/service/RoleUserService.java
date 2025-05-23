@@ -1,6 +1,6 @@
 package com.example.apigestionpieceauto.service;
 
-import com.example.apigestionpieceauto.entity.UserEntity;
+import com.example.apigestionpieceauto.Entity.UserEntity;
 import com.example.apigestionpieceauto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
