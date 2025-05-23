@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,14 +69,14 @@
                 <a th:href="@{/piece}" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <div class="feature-card">
+            <!--<div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <h2>Statistiques</h2>
                 <p>Analysez vos données et prenez des décisions éclairées grâce à nos tableaux de bord.</p>
                 <a href="#" class="feature-link">Explorer <i class="fas fa-arrow-right"></i></a>
-            </div>
+            </div>-->
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-car"></i>
@@ -115,10 +115,12 @@
             <div class="footer-section">
                 <h3>Navigation Rapide</h3>
                 <ul>
-                    <li><a href="/fournisseur">Fournisseurs</a></li>
+                    <li><a th:href="@{/fournisseur}">Fournisseurs</a></li>
                     <li><a th:href="@{/piece}">Pièces</a></li>
                     <li><a th:href="@{/vehicule}">Véhicules</a></li>
-                    <li><a href="#">Statistiques</a></li>
+                    <li><a th:href="@{/piece/carrosserie}">Carrosseries</a></li>
+                    <li><a th:href="@{/pieces/moteur}">Moteurs</a></li>
+<!--                    <li><a href="#">Statistiques</a></li>-->
                 </ul>
             </div>
             <div class="footer-section">
