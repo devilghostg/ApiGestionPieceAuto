@@ -107,7 +107,7 @@
 <body>
 
     <main class="main-content">
-        <h2>Modifier la pièce</h2>
+        <h2>Modifier la pièce</h2>q
 
         <form th:action="@{/piece/carrosserie/edit/{id}(id=${carrosserie.id})}" method="post">
             <label for="nom" class="form-label">Nom de la piéce</label>
@@ -131,7 +131,7 @@
                 <option th:each="type: ${typeCarrosserie}"
                     th:value="${type}"
                     th:text="${type.label}"
-                    th:selected="${type} == ${carrosserie.typeCarrosserie}">
+                    th:selected="${type == carrosserie.typeCarrosserie}">
                 </option>
             </select>
 
