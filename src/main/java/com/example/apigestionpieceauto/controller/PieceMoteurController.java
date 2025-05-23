@@ -78,7 +78,7 @@ class PieceMoteurController {
     @PostMapping("/delete/{id}")
     public String deletePieceMoteur(@PathVariable Long id) {
         pieceMoteurService.deletePieceMoteur(id);
-        return "redirect:piece/moteur";
+        return "redirect:/piece/moteur";
     }
 
 }
