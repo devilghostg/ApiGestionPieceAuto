@@ -67,6 +67,8 @@ class PieceMoteurController {
      */
     @PostMapping("/edit/{id}")
     public String updatePieceAuto(@PathVariable Long id, @ModelAttribute PieceMoteur pieceMoteur) {
+        System.out.println("TypeMoteur " + pieceMoteur.getTypeMoteur());
+
         pieceMoteurService.createPieceMoteur(pieceMoteur);
         return "redirect:/piece/moteur/" + id;
     }

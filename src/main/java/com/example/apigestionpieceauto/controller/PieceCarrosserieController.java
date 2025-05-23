@@ -80,10 +80,9 @@ class PieceCarrosserieController {
     }
 
     /**
-     * Ajouté la fonctionnalité de update dans le Service
      * @param id
      * @param pieceCarrosserie
-     * @return redirect:piece/carrosserie/id
+     * @return redirect:/piece/carrosserie/id
      */
     @PostMapping("/edit/{id}")
     public String updatePieceCarrosserie(@PathVariable Long id, @ModelAttribute PieceCarrosserie pieceCarrosserie) {
