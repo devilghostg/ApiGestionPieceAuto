@@ -129,8 +129,8 @@
                 <option value="" disabled selected>-- Sélectionner un type --</option>
                 <option th:each="type: ${typeMoteurs}"
                         th:value="${type}"
-                        th:text="${type}"
-                        th:selected="${type} == ${moteur.typeMoteur}">
+                        th:text="${type.label}"
+                        th:selected="${type == moteur.typeMoteur}">
                 </option>
             </select>
 

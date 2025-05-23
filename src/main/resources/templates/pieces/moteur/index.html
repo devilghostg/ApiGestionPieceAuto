@@ -244,9 +244,10 @@
 
                         <span th:text="${moteur.marque}">Marque</span>
                     </p>
-                    <p>
-                        <span th:text="${moteur.typeMoteur} + ' - ' + ${moteur.puissance + ' CV'}">Type de moteur</span>
-                    </p>
+                    <!--<p>
+                        <span th:text="${moteur.puissance + ' CV'}">puissance</span>
+&lt;!&ndash;                        <span th:text="${moteur.typeMoteur.label}">typeMoteur</span>&ndash;&gt;
+                    </p>-->
                     <p>
                         <i class="fas fa-tag"></i>
                         <span th:text="${moteur.prix + ' €'}">prix</span>

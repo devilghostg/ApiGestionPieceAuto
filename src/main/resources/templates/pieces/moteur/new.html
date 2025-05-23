@@ -125,7 +125,7 @@
                 <option value="" disabled selected>-- Sélectionner un type --</option>
                 <option th:each="type: ${typeMoteurs}"
                         th:value="${type}"
-                        th:text="${type}">
+                        th:text="${type.label}">
                 </option>
             </select>
 
